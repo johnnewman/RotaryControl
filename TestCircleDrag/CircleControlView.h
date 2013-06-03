@@ -15,7 +15,10 @@
 
 @interface CircleControlView : UIView <CircleControlButtonDelegate> {
     CircleControlButton *controlButton;
+    UILabel *percentageLabel;
     CGRect circleRect;
 }
+
+@property (nonatomic, readonly) CGFloat percentage;
 @end
 

@@ -24,8 +24,7 @@
     CircleControlView *circleControl = [[CircleControlView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
     circleControl.layer.masksToBounds = YES;
     circleControl.layer.cornerRadius = 150.0;
-    circleControl.layer.borderWidth = 1.0;
-    circleControl.backgroundColor = [UIColor yellowColor];
+    circleControl.backgroundColor = [UIColor clearColor];
     [self.view addSubview:circleControl];
     circleControl.center = self.view.center;
     
