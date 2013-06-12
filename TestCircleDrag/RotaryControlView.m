@@ -107,7 +107,7 @@
         [animationThread start];
     }
     else {
-        [controlButton moveButtonToPercentage:_percentage];
+        [controlButton moveButtonToPercentage:percentage];
     }
 }
 
