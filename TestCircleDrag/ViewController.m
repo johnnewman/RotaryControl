@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "CircleControlView.h"
+#import "RotaryControlView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
@@ -21,9 +21,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    CircleControlView *circleControl = [[CircleControlView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
-    [self.view addSubview:circleControl];
-    circleControl.center = self.view.center;
+    RotaryControlView *rotaryControl = [[RotaryControlView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    [self.view addSubview:rotaryControl];
+    rotaryControl.center = self.view.center;
+    
+    rotaryControl.percentage = 75;
     
     
     self.view.backgroundColor = [UIColor purpleColor];
