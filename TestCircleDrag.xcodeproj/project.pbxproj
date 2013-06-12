@@ -13,13 +13,12 @@
 		521DF43D175CD050003310D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 521DF43B175CD050003310D2 /* InfoPlist.strings */; };
 		521DF43F175CD050003310D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF43E175CD050003310D2 /* main.m */; };
 		521DF443175CD050003310D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF442175CD050003310D2 /* AppDelegate.m */; };
-		521DF445175CD050003310D2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 521DF444175CD050003310D2 /* Default.png */; };
 		521DF44C175CD050003310D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF44B175CD050003310D2 /* ViewController.m */; };
 		521DF44F175CD050003310D2 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521DF44D175CD050003310D2 /* ViewController.xib */; };
 		521DF457175CD072003310D2 /* RotaryControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 521DF456175CD072003310D2 /* RotaryControlView.m */; };
 		521DF459175CEF27003310D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 521DF458175CEF27003310D2 /* QuartzCore.framework */; };
 		521DF45F175CF1E1003310D2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521DF45E175CF1E1003310D2 /* Icon@2x.png */; };
-		521DF461175CF25D003310D2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521DF460175CF25D003310D2 /* Default-568h@2x.png */; };
+		521DF46517692104003310D2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521DF46417692104003310D2 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 		521DF440175CD050003310D2 /* TestCircleDrag-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestCircleDrag-Prefix.pch"; sourceTree = "<group>"; };
 		521DF441175CD050003310D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		521DF442175CD050003310D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		521DF444175CD050003310D2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		521DF44A175CD050003310D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		521DF44B175CD050003310D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		521DF44E175CD050003310D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
@@ -41,7 +39,7 @@
 		521DF456175CD072003310D2 /* RotaryControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotaryControlView.m; sourceTree = "<group>"; };
 		521DF458175CEF27003310D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		521DF45E175CF1E1003310D2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		521DF460175CF25D003310D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		521DF46417692104003310D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +107,8 @@
 				521DF43B175CD050003310D2 /* InfoPlist.strings */,
 				521DF43E175CD050003310D2 /* main.m */,
 				521DF440175CD050003310D2 /* TestCircleDrag-Prefix.pch */,
-				521DF460175CF25D003310D2 /* Default-568h@2x.png */,
 				521DF45E175CF1E1003310D2 /* Icon@2x.png */,
-				521DF444175CD050003310D2 /* Default.png */,
+				521DF46417692104003310D2 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -168,10 +165,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				521DF43D175CD050003310D2 /* InfoPlist.strings in Resources */,
-				521DF445175CD050003310D2 /* Default.png in Resources */,
 				521DF44F175CD050003310D2 /* ViewController.xib in Resources */,
 				521DF45F175CF1E1003310D2 /* Icon@2x.png in Resources */,
-				521DF461175CF25D003310D2 /* Default-568h@2x.png in Resources */,
+				521DF46517692104003310D2 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
