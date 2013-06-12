@@ -13,7 +13,7 @@
 #define kNUM_ANIMATION_INTERVALS 20
 
 @interface RotaryControlButton : UIButton {
-    NSInteger buttonCenterRadius;
+    CGFloat buttonCenterRadius;
 }
 @property (nonatomic, weak) id<RotaryControlButtonDelegate> delegate;
 @property (nonatomic) CGRect circleRect;
@@ -25,7 +25,7 @@
 - (void)setupInitialLayout;
 - (void)animateRotaryProgressToPercentage:(NSNumber*)percentage;
 - (void)moveButtonToPercentageOnMainThread:(NSNumber*)percentage;
-- (void)rotateAnimationFinished;
+- (void)rotaryAnimationFinished;
 - (CGRect)modifyCircleRect:(CGRect)rect withRadiusDelta:(CGFloat)radiusDelta;
 @end
 
@@ -126,7 +126,7 @@
             [self performSelectorOnMainThread:@selector(moveButtonToPercentageOnMainThread:) withObject:[NSNumber numberWithFloat:_percentage + progressIncrement] waitUntilDone:NO];
         }
         [self performSelectorOnMainThread:@selector(moveButtonToPercentageOnMainThread:) withObject:[NSNumber numberWithFloat:percentageToReach] waitUntilDone:NO];
-        [self performSelectorOnMainThread:@selector(rotateAnimationFinished) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(rotaryAnimationFinished) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -135,7 +135,7 @@
     [controlButton moveButtonToPercentage:percentage.floatValue];
 }
 
-- (void)rotateAnimationFinished
+- (void)rotaryAnimationFinished
 {
     controlButton.userInteractionEnabled = YES;
 }
