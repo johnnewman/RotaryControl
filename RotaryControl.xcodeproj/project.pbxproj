@@ -22,14 +22,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		521DF42F175CD050003310D2 /* TestCircleDrag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCircleDrag.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		521DF42F175CD050003310D2 /* RotaryControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaryControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		521DF432175CD050003310D2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		521DF434175CD050003310D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		521DF436175CD050003310D2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		521DF43A175CD050003310D2 /* TestCircleDrag-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestCircleDrag-Info.plist"; sourceTree = "<group>"; };
+		521DF43A175CD050003310D2 /* RotaryControl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RotaryControl-Info.plist"; sourceTree = "<group>"; };
 		521DF43C175CD050003310D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		521DF43E175CD050003310D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		521DF440175CD050003310D2 /* TestCircleDrag-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestCircleDrag-Prefix.pch"; sourceTree = "<group>"; };
+		521DF440175CD050003310D2 /* RotaryControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RotaryControl-Prefix.pch"; sourceTree = "<group>"; };
 		521DF441175CD050003310D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		521DF442175CD050003310D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		521DF44A175CD050003310D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 		521DF426175CD050003310D2 = {
 			isa = PBXGroup;
 			children = (
-				521DF438175CD050003310D2 /* TestCircleDrag */,
+				521DF438175CD050003310D2 /* RotaryControl */,
 				521DF431175CD050003310D2 /* Frameworks */,
 				521DF430175CD050003310D2 /* Products */,
 			);
@@ -69,7 +69,7 @@
 		521DF430175CD050003310D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				521DF42F175CD050003310D2 /* TestCircleDrag.app */,
+				521DF42F175CD050003310D2 /* RotaryControl.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,7 +85,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		521DF438175CD050003310D2 /* TestCircleDrag */ = {
+		521DF438175CD050003310D2 /* RotaryControl */ = {
 			isa = PBXGroup;
 			children = (
 				521DF441175CD050003310D2 /* AppDelegate.h */,
@@ -97,16 +97,17 @@
 				521DF455175CD072003310D2 /* RotaryControlView.h */,
 				521DF456175CD072003310D2 /* RotaryControlView.m */,
 			);
+			name = RotaryControl;
 			path = TestCircleDrag;
 			sourceTree = "<group>";
 		};
 		521DF439175CD050003310D2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				521DF43A175CD050003310D2 /* TestCircleDrag-Info.plist */,
+				521DF43A175CD050003310D2 /* RotaryControl-Info.plist */,
 				521DF43B175CD050003310D2 /* InfoPlist.strings */,
 				521DF43E175CD050003310D2 /* main.m */,
-				521DF440175CD050003310D2 /* TestCircleDrag-Prefix.pch */,
+				521DF440175CD050003310D2 /* RotaryControl-Prefix.pch */,
 				521DF45E175CF1E1003310D2 /* Icon@2x.png */,
 				521DF46417692104003310D2 /* Default-568h@2x.png */,
 			);
@@ -116,9 +117,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		521DF42E175CD050003310D2 /* TestCircleDrag */ = {
+		521DF42E175CD050003310D2 /* RotaryControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 521DF452175CD050003310D2 /* Build configuration list for PBXNativeTarget "TestCircleDrag" */;
+			buildConfigurationList = 521DF452175CD050003310D2 /* Build configuration list for PBXNativeTarget "RotaryControl" */;
 			buildPhases = (
 				521DF42B175CD050003310D2 /* Sources */,
 				521DF42C175CD050003310D2 /* Frameworks */,
@@ -128,9 +129,9 @@
 			);
 			dependencies = (
 			);
-			name = TestCircleDrag;
+			name = RotaryControl;
 			productName = TestCircleDrag;
-			productReference = 521DF42F175CD050003310D2 /* TestCircleDrag.app */;
+			productReference = 521DF42F175CD050003310D2 /* RotaryControl.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +143,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "John Newman";
 			};
-			buildConfigurationList = 521DF42A175CD050003310D2 /* Build configuration list for PBXProject "TestCircleDrag" */;
+			buildConfigurationList = 521DF42A175CD050003310D2 /* Build configuration list for PBXProject "RotaryControl" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -154,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				521DF42E175CD050003310D2 /* TestCircleDrag */,
+				521DF42E175CD050003310D2 /* RotaryControl */,
 			);
 		};
 /* End PBXProject section */
@@ -267,9 +268,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestCircleDrag/TestCircleDrag-Prefix.pch";
-				INFOPLIST_FILE = "TestCircleDrag/TestCircleDrag-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TestCircleDrag/RotaryControl-Prefix.pch";
+				INFOPLIST_FILE = "TestCircleDrag/RotaryControl-Info.plist";
+				PRODUCT_NAME = RotaryControl;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -278,9 +279,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestCircleDrag/TestCircleDrag-Prefix.pch";
-				INFOPLIST_FILE = "TestCircleDrag/TestCircleDrag-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "TestCircleDrag/RotaryControl-Prefix.pch";
+				INFOPLIST_FILE = "TestCircleDrag/RotaryControl-Info.plist";
+				PRODUCT_NAME = RotaryControl;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -288,7 +289,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		521DF42A175CD050003310D2 /* Build configuration list for PBXProject "TestCircleDrag" */ = {
+		521DF42A175CD050003310D2 /* Build configuration list for PBXProject "RotaryControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				521DF450175CD050003310D2 /* Debug */,
@@ -297,7 +298,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		521DF452175CD050003310D2 /* Build configuration list for PBXNativeTarget "TestCircleDrag" */ = {
+		521DF452175CD050003310D2 /* Build configuration list for PBXNativeTarget "RotaryControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				521DF453175CD050003310D2 /* Debug */,
