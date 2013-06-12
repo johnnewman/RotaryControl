@@ -24,6 +24,7 @@
     
     primaryRotaryControl = [[RotaryControlView alloc] initWithFrame:CGRectMake(self.view.frame.size.width /2 - kROTARY_SIZE/2, 0, kROTARY_SIZE, kROTARY_SIZE)];
     primaryRotaryControl.delegate = self;
+    primaryRotaryControl.percentage = .6;
     [self.view addSubview:primaryRotaryControl];
     
     secondaryRotaryControl = [[RotaryControlView alloc] initWithFrame:CGRectMake(self.view.frame.size.width /2 - kROTARY_SIZE/2, kROTARY_SIZE, kROTARY_SIZE, kROTARY_SIZE)];
@@ -32,9 +33,19 @@
     secondaryRotaryControl.innerDetailCircleColor = [UIColor colorWithRed:0.4706 green:0.6902 blue:0.8078 alpha:1.0];
     secondaryRotaryControl.fillColor = [UIColor colorWithRed:0.1725 green:0.5725 blue:0.8314 alpha:1.0];
     secondaryRotaryControl.controlColor = [UIColor darkGrayColor];
+    secondaryRotaryControl.percentage = .38;
     [self.view addSubview:secondaryRotaryControl];
     
     self.view.backgroundColor = [UIColor purpleColor];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [primaryRotaryControl setPercentage:0 animated:YES];
+    [secondaryRotaryControl setPercentage:0 animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
