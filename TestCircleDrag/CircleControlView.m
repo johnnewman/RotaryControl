@@ -36,6 +36,8 @@ static UIColor *customGrayColor;
         lightOrangeColor = [UIColor colorWithRed:1.0 green:0.8588 blue:0.4980 alpha:1.0];
         customGrayColor = [UIColor colorWithRed:0.5765 green:0.5843 blue:0.5961 alpha:1.0];
         
+        self.backgroundColor = [UIColor clearColor];
+        
         CGFloat circleDiameter = frame.size.width - (kBUTTON_WIDTH * 2);
         circleRect = CGRectMake(self.frame.origin.x + kBUTTON_WIDTH, self.frame.origin.y + kBUTTON_WIDTH, circleDiameter, circleDiameter);
         
@@ -53,7 +55,6 @@ static UIColor *customGrayColor;
         percentageLabel.font = [UIFont systemFontOfSize:90];
         percentageLabel.textColor = customGrayColor;
         [self addSubview:percentageLabel];
-        
     }
     return self;
 }
@@ -68,14 +69,14 @@ static UIColor *customGrayColor;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //stroke main circle
-    CGRect outerOrangeEllipse = CGRectMake(circleRect.origin.x - kBUTTON_WIDTH/2, circleRect.origin.y - kBUTTON_WIDTH/2, circleRect.size.width + kBUTTON_WIDTH, circleRect.size.width + kBUTTON_WIDTH);
+    CGRect outerOrangeBorderRect = CGRectMake(circleRect.origin.x - kBUTTON_WIDTH/2, circleRect.origin.y - kBUTTON_WIDTH/2, circleRect.size.width + kBUTTON_WIDTH, circleRect.size.width + kBUTTON_WIDTH);
     
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-    CGContextFillEllipseInRect(context, outerOrangeEllipse);
+    CGContextFillEllipseInRect(context, outerOrangeBorderRect);
     
     CGContextSetLineWidth(context, 4.0);
     CGContextSetStrokeColorWithColor(context, filledOrangeColor.CGColor);
-    CGContextStrokeEllipseInRect(context, outerOrangeEllipse);
+    CGContextStrokeEllipseInRect(context, outerOrangeBorderRect);
     
     CGPoint circleCenter = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
     CGPoint buttonCenter = controlButton.center;
@@ -112,7 +113,7 @@ static UIColor *customGrayColor;
     //add full-circle arct from the bottom of the circle to the button location
     CGMutablePathRef mutablePath = CGPathCreateMutable();
     CGPathMoveToPoint(mutablePath, nil, circleCenter.x, circleCenter.y);
-    CGPathAddArc(mutablePath, nil, circleCenter.x, circleCenter.y, outerOrangeEllipse.size.height/2, M_PI_2, angleInRads, 0);
+    CGPathAddArc(mutablePath, nil, circleCenter.x, circleCenter.y, outerOrangeBorderRect.size.height/2, M_PI_2, angleInRads, 0);
     CGPathCloseSubpath(mutablePath);
     
     //add the inner arc that will cover the full-circle arc (due to even-odd filling)
@@ -124,8 +125,8 @@ static UIColor *customGrayColor;
     CGContextSetFillColorWithColor(context, filledOrangeColor.CGColor);
     CGContextEOFillPath(context);
     
-    CGFloat outerCircleX = outerOrangeEllipse.size.height/2 * cos(angleInRads) + circleCenter.x;
-    CGFloat outerCircleY = outerOrangeEllipse.size.height/2 * sin(angleInRads) + circleCenter.y;
+    CGFloat outerCircleX = outerOrangeBorderRect.size.height/2 * cos(angleInRads) + circleCenter.x;
+    CGFloat outerCircleY = outerOrangeBorderRect.size.height/2 * sin(angleInRads) + circleCenter.y;
     CGFloat innerCircleX = (innerGrayCircleRadius - innerGrayCircleLineWidth/2) * cos(angleInRads) + circleCenter.x;
     CGFloat innerCircleY = (innerGrayCircleRadius - innerGrayCircleLineWidth/2) * sin(angleInRads) + circleCenter.y;
     
