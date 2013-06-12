@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RotaryControlView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <RotaryControlDelegate> {
+    RotaryControlView *primaryRotaryControl;
+    RotaryControlView *secondaryRotaryControl;
+}
 
 @end
