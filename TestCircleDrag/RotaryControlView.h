@@ -10,14 +10,19 @@
 @class RotaryControlButton;
 
 @protocol RotaryControlButtonDelegate <NSObject>
-- (void)controlButtonDidMove:(RotaryControlButton*)controlButton;
+- (void)rotaryControlButtonDidMove:(RotaryControlButton*)controlButton;
+- (void)rotaryControlButtonDidFinishMovingFromTouch:(RotaryControlButton*)controlButton;
 @end
+
+@protocol RotaryControlDelegate;
 
 @interface RotaryControlView : UIView <RotaryControlButtonDelegate> {
     RotaryControlButton *controlButton;
     UILabel *percentageLabel;
     CGRect mainCircleRect;
 }
+
+@property (nonatomic, weak)id<RotaryControlDelegate> delegate;
 
 @property (nonatomic, assign) CGFloat percentage;
 
@@ -38,6 +43,12 @@
 @property (nonatomic, assign) CGFloat outerDetailCircleEdgeWidth;
 
 - (void)setPercentage:(CGFloat)percentage animated:(BOOL)animated;
+- (void)useDefaultSizes;
+- (void)useDefaultColors;
 
+@end
+
+@protocol RotaryControlDelegate <NSObject>
+- (void)rotaryControlDidFinishChangingValueFromUserTouch:(RotaryControlView*)rotaryControlView;
 @end
 

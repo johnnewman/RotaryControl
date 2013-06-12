@@ -9,15 +9,23 @@
 #import "RotaryControlView.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kANIMATION_TIME 0.25
+#define kNUM_ANIMATION_INTERVALS 20
+
 @interface RotaryControlButton : UIButton {
     NSInteger buttonCenterRadius;
 }
 @property (nonatomic, weak) id<RotaryControlButtonDelegate> delegate;
 @property (nonatomic) CGRect circleRect;
+
+- (void)moveButtonToPercentage:(CGFloat)percentage;
 @end
 
 @interface RotaryControlView ()
 - (void)setupInitialLayout;
+- (void)animateRotaryProgressToPercentage:(NSNumber*)percentage;
+- (void)moveButtonToPercentageOnMainThread:(NSNumber*)percentage;
+- (void)rotateAnimationFinished;
 - (CGRect)modifyCircleRect:(CGRect)rect withRadiusDelta:(CGFloat)radiusDelta;
 @end
 
@@ -38,18 +46,8 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-    _mainBackgroundColor = [UIColor whiteColor];
-    _fillColor = [UIColor colorWithRed:1.0 green:0.7216 blue:0.0 alpha:1.0];
-    _innerDetailCircleColor = [UIColor colorWithRed:1.0 green:0.7922 blue:0.2471 alpha:1.0];
-    _outerDetailCircleColor = [UIColor colorWithRed:1.0 green:0.8588 blue:0.4980 alpha:1.0];
-    _controlColor = [UIColor colorWithRed:0.5765 green:0.5843 blue:0.5961 alpha:1.0];
-    
-    _controlButtonSize = 35;
-    _fillWidth = 40;
-    _innerCircleEdgeWidth = 4.0;
-    _outerCircleEdgeWidth = 4.0;
-    _innerDetailCircleEdgeWidth = 9.0;
-    _outerDetailCircleEdgeWidth = 7.0;
+    [self useDefaultSizes];
+    [self useDefaultColors];
     
     CGFloat circleDiameter = self.frame.size.width - _controlButtonSize;
     mainCircleRect = CGRectMake(self.bounds.origin.x + _controlButtonSize / 2, self.bounds.origin.y + _controlButtonSize / 2, circleDiameter, circleDiameter);
@@ -61,30 +59,87 @@
     controlButton.delegate = self;
     [self addSubview:controlButton];
     
-    percentageLabel = [[UILabel alloc] initWithFrame:self.frame];
+    percentageLabel = [[UILabel alloc] initWithFrame:self.bounds];
     percentageLabel.backgroundColor = [UIColor clearColor];
     percentageLabel.textAlignment = NSTextAlignmentCenter;
     percentageLabel.font = [UIFont systemFontOfSize:90];
     percentageLabel.textColor = _controlColor;
+    percentageLabel.text = @"0";
     [self addSubview:percentageLabel];
 }
 
-- (void)setControlColor:(UIColor *)controlColor {
-    _controlColor = controlColor;
-    controlButton.backgroundColor = _controlColor;
+- (void)useDefaultSizes
+{
+    _controlButtonSize = 35;
+    _fillWidth = 40;
+    _innerCircleEdgeWidth = 4.0;
+    _outerCircleEdgeWidth = 4.0;
+    _innerDetailCircleEdgeWidth = 9.0;
+    _outerDetailCircleEdgeWidth = 7.0;
 }
 
-- (void)setPercentage:(CGFloat)percentage {
+- (void)useDefaultColors
+{
+    _mainBackgroundColor = [UIColor whiteColor];
+    _fillColor = [UIColor colorWithRed:1.0 green:0.7216 blue:0.0 alpha:1.0];
+    _innerDetailCircleColor = [UIColor colorWithRed:1.0 green:0.7922 blue:0.2471 alpha:1.0];
+    _outerDetailCircleColor = [UIColor colorWithRed:1.0 green:0.8588 blue:0.4980 alpha:1.0];
+    _controlColor = [UIColor colorWithRed:0.5765 green:0.5843 blue:0.5961 alpha:1.0];
+}
+
+- (void)setControlColor:(UIColor *)controlColor
+{
+    _controlColor = controlColor;
+    controlButton.backgroundColor = _controlColor;
+    percentageLabel.textColor = _controlColor;
+}
+
+- (void)setPercentage:(CGFloat)percentage
+{
     [self setPercentage:percentage animated:NO];
 }
 
-- (void)setPercentage:(CGFloat)percentage animated:(BOOL)animated {
-    _percentage = percentage;
+- (void)setPercentage:(CGFloat)percentage animated:(BOOL)animated
+{
     if (animated) {
-        
+        NSThread *animationThread = [[NSThread alloc] initWithTarget:self selector:@selector(animateRotaryProgressToPercentage:) object:[NSNumber numberWithFloat:percentage]];
+        controlButton.userInteractionEnabled = NO;
+        [animationThread start];
     }
-    [self setNeedsDisplay];
+    else {
+        [controlButton moveButtonToPercentage:_percentage];
+    }
 }
+
+- (void)animateRotaryProgressToPercentage:(NSNumber*)percentage
+{
+    //find a set of values between current and percentage and move the button increments over _animationTime
+    @autoreleasepool {
+        CGFloat percentageToReach = percentage.floatValue;
+        CGFloat distanceToMove = percentageToReach - _percentage;
+        CGFloat progressIncrement = distanceToMove / kNUM_ANIMATION_INTERVALS;
+        CGFloat sleepTime = kANIMATION_TIME / kNUM_ANIMATION_INTERVALS;
+        
+        for (int i = 0; i < kNUM_ANIMATION_INTERVALS; i++)
+        {
+            [NSThread sleepForTimeInterval:sleepTime];
+            [self performSelectorOnMainThread:@selector(moveButtonToPercentageOnMainThread:) withObject:[NSNumber numberWithFloat:_percentage + progressIncrement] waitUntilDone:NO];
+        }
+        [self performSelectorOnMainThread:@selector(moveButtonToPercentageOnMainThread:) withObject:[NSNumber numberWithFloat:percentageToReach] waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(rotateAnimationFinished) withObject:nil waitUntilDone:NO];
+    }
+}
+
+- (void)moveButtonToPercentageOnMainThread:(NSNumber*)percentage
+{
+    [controlButton moveButtonToPercentage:percentage.floatValue];
+}
+
+- (void)rotateAnimationFinished
+{
+    controlButton.userInteractionEnabled = YES;
+}
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -147,12 +202,6 @@
     CGContextMoveToPoint(context, progressOnInnerCircleX, progressOnInnerCircleY);
     CGContextAddLineToPoint(context, controlButton.center.x, controlButton.center.y);
     CGContextStrokePath(context);
-    
-    //update percentage label
-    CGFloat degrees = (angleInRads - M_PI_2) *  180 / M_PI;
-    degrees = degrees > 0.0 ? degrees : degrees + 360;
-    _percentage = degrees / 360;
-    percentageLabel.text = [NSString stringWithFormat:@"%0.0f", _percentage * 100];
 }
 
 - (CGRect)modifyCircleRect:(CGRect)rect withRadiusDelta:(CGFloat)radiusDelta
@@ -169,8 +218,24 @@
 #pragma mark -
 #pragma mark RotaryControlButtonDelegate Methods
 
-- (void)controlButtonDidMove:(RotaryControlButton *)controlButton {
+- (void)rotaryControlButtonDidMove:(RotaryControlButton *)_controlButton {
+    
+    CGPoint circleCenter = CGPointMake(CGRectGetMidX(mainCircleRect), CGRectGetMidY(mainCircleRect));
+    CGFloat angleInRads = atan2(controlButton.center.y - circleCenter.y, controlButton.center.x - circleCenter.x);
+    
+    //update percentage label
+    CGFloat degrees = (angleInRads - M_PI_2) *  180 / M_PI;
+    degrees = degrees > 0.0 ? degrees : degrees + 360;
+    _percentage = degrees / 360;
+    percentageLabel.text = [NSString stringWithFormat:@"%0.0f", _percentage * 100];
+    
     [self setNeedsDisplay];
+}
+
+- (void)rotaryControlButtonDidFinishMovingFromTouch:(RotaryControlButton *)controlButton
+{
+    if ([_delegate respondsToSelector:@selector(rotaryControlDidFinishChangingValueFromUserTouch:)])
+        [_delegate rotaryControlDidFinishChangingValueFromUserTouch:self];
 }
 
 @end
@@ -184,6 +249,17 @@
     buttonCenterRadius = CGRectGetWidth(_circleRect) / 2;
 }
 
+- (void)moveButtonToPercentage:(CGFloat)percentage
+{
+    CGFloat angleInRadians = 2 * M_PI * percentage + M_PI_2;
+    CGPoint circleCenter = CGPointMake(CGRectGetMidY(_circleRect), CGRectGetMidX(_circleRect));
+    CGFloat buttonCenterX = buttonCenterRadius * cos(angleInRadians) + circleCenter.x;
+    CGFloat buttonCenterY = buttonCenterRadius * sin(angleInRadians) + circleCenter.y;
+    self.center = CGPointMake(buttonCenterX, buttonCenterY);
+    
+    if ([_delegate respondsToSelector:@selector(rotaryControlButtonDidMove:)])
+        [_delegate rotaryControlButtonDidMove:self];
+}
 
 //moves the button with the touch, keeping the button anchored to the circle's edge
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -195,9 +271,16 @@
     CGFloat circleY = buttonCenterRadius * sin(touchAngle) + circleCenter.y;
     self.center = CGPointMake(circleX, circleY);
     
-    if ([_delegate respondsToSelector:@selector(controlButtonDidMove:)])
-        [_delegate controlButtonDidMove:self];
+    if ([_delegate respondsToSelector:@selector(rotaryControlButtonDidMove:)])
+        [_delegate rotaryControlButtonDidMove:self];
     [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if ([_delegate respondsToSelector:@selector(rotaryControlButtonDidFinishMovingFromTouch:)])
+        [_delegate rotaryControlButtonDidFinishMovingFromTouch:self];
+    [super touchesEnded:touches withEvent:event];
 }
 
 @end
