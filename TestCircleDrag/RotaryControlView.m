@@ -223,10 +223,13 @@
     CGPoint circleCenter = CGPointMake(CGRectGetMidX(mainCircleRect), CGRectGetMidY(mainCircleRect));
     CGFloat angleInRads = atan2(controlButton.center.y - circleCenter.y, controlButton.center.x - circleCenter.x);
     
+    angleInRads -= M_PI_2;
+    if (angleInRads < 0)
+        angleInRads += 2*M_PI;
+    angleInRads /= 2*M_PI;
+    
     //update percentage label
-    CGFloat degrees = (angleInRads - M_PI_2) *  180 / M_PI;
-    degrees = degrees > 0.0 ? degrees : degrees + 360;
-    _percentage = degrees / 360;
+    _percentage = angleInRads;
     percentageLabel.text = [NSString stringWithFormat:@"%0.0f", _percentage * 100];
     
     [self setNeedsDisplay];
