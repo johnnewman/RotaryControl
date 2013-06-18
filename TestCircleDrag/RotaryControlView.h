@@ -25,6 +25,7 @@
 @property (nonatomic, weak)id<RotaryControlDelegate> delegate;
 
 @property (nonatomic, assign) CGFloat percentage;
+@property (nonatomic, assign) CGFloat maxValue;
 
 @property (nonatomic, strong) UIColor *mainBackgroundColor;
 

@@ -46,6 +46,8 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
+    _maxValue = 100;
+    
     [self useDefaultSizes];
     [self useDefaultColors];
     
@@ -230,7 +232,7 @@
     
     //update percentage label
     _percentage = angleInRads;
-    percentageLabel.text = [NSString stringWithFormat:@"%0.0f", _percentage * 100];
+    percentageLabel.text = [NSString stringWithFormat:@"%0.0f", (_maxValue * _percentage)];
     
     [self setNeedsDisplay];
 }
