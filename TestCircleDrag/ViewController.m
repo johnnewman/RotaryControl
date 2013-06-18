@@ -34,6 +34,7 @@
     secondaryRotaryControl.fillColor = [UIColor colorWithRed:0.1725 green:0.5725 blue:0.8314 alpha:1.0];
     secondaryRotaryControl.controlColor = [UIColor darkGrayColor];
     secondaryRotaryControl.percentage = .38;
+    secondaryRotaryControl.maxValue = 255;
     [self.view addSubview:secondaryRotaryControl];
     
     self.view.backgroundColor = [UIColor purpleColor];
