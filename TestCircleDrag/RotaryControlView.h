@@ -9,17 +9,11 @@
 #import <UIKit/UIKit.h>
 @class RotaryControlButton;
 
-@protocol RotaryControlButtonDelegate <NSObject>
-- (void)rotaryControlButtonDidMove:(RotaryControlButton*)controlButton;
-- (void)rotaryControlButtonDidFinishMovingFromTouch:(RotaryControlButton*)controlButton;
-@end
-
 @protocol RotaryControlDelegate;
 
-@interface RotaryControlView : UIView <RotaryControlButtonDelegate> {
+@interface RotaryControlView : UIView {
     RotaryControlButton *controlButton;
     UILabel *percentageLabel;
-    CGRect mainCircleRect;
 }
 
 @property (nonatomic, weak)id<RotaryControlDelegate> delegate;
