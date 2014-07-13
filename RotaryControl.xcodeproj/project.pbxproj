@@ -97,8 +97,7 @@
 				521DF455175CD072003310D2 /* RotaryControlView.h */,
 				521DF456175CD072003310D2 /* RotaryControlView.m */,
 			);
-			name = RotaryControl;
-			path = TestCircleDrag;
+			path = RotaryControl;
 			sourceTree = "<group>";
 		};
 		521DF439175CD050003310D2 /* Supporting Files */ = {
@@ -268,8 +267,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestCircleDrag/RotaryControl-Prefix.pch";
-				INFOPLIST_FILE = "TestCircleDrag/RotaryControl-Info.plist";
+				GCC_PREFIX_HEADER = "RotaryControl/RotaryControl-Prefix.pch";
+				INFOPLIST_FILE = "RotaryControl/RotaryControl-Info.plist";
 				PRODUCT_NAME = RotaryControl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -279,8 +278,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestCircleDrag/RotaryControl-Prefix.pch";
-				INFOPLIST_FILE = "TestCircleDrag/RotaryControl-Info.plist";
+				GCC_PREFIX_HEADER = "RotaryControl/RotaryControl-Prefix.pch";
+				INFOPLIST_FILE = "RotaryControl/RotaryControl-Info.plist";
 				PRODUCT_NAME = RotaryControl;
 				WRAPPER_EXTENSION = app;
 			};
@@ -305,6 +304,7 @@
 				521DF454175CD050003310D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
